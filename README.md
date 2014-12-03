@@ -3,4 +3,8 @@
 Nerdle
 ======
 
-Student project at the TU Berlin. Development of a question answering system.
+Student project at the TU Berlin. Development of a question answering system. 
+
+Contributors:
+
+Umar Maqsud, Berken Bayat, Jasir El-Sobhy, Arif Oksal

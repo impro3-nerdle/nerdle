@@ -1,0 +1,9 @@
+/target
+.classpath
+.project
+.settings/
+hs_err_pid11788.log
+hs_err_pid19964.log
+stanford_conf.properties
+hs_err_pid6639.log
+

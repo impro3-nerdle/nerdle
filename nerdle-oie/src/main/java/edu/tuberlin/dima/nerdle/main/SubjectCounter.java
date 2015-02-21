@@ -1,0 +1,102 @@
+package edu.tuberlin.dima.nerdle.main;
+
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
+import org.apache.commons.configuration.ConfigurationException;
+
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+import com.tinkerpop.gremlin.java.GremlinPipeline;
+
+import edu.tuberlin.dima.nerdle.graph.NerdleGraphTransformer;
+import edu.tuberlin.dima.nerdle.qa.SingletonGraph;
+
+public class SubjectCounter {
+
+//	public final static String PROPERTY_TEXT = NerdleGraphTransformer.PROPERTY_TEXT;
+//	public final static String PROPERTY_NER = "ner";
+//	public final static String PROPERTY_CLAUSE_TYPE = NerdleGraphTransformer.PROPERTY_CLAUSE_TYPE;
+//	public final static String PROPERTY_SENTENCE = "sentence";
+//	public final static String PROPERTY_PROBABILITY = "probability";
+
+	public static void main(String[] args) throws IOException {
+		if (args.length != 1) {
+			System.err.println("Please enter a graph name.");
+			System.err.println("graphs: memory-beta, simpsons, wookieepedia");
+			System.err
+					.println("Graph path should be set in the graphs.poperties file.");
+			System.exit(1);
+		}
+
+		TinkerGraph graph;
+		
+		try {
+			System.out.println("loading...");
+			graph = SingletonGraph.getInstance().getGraphs().get(args[0]);
+			System.out.println("loaded");
+			
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			CountComparator bvc = new CountComparator(map);
+			TreeMap<String, Integer> sortedMap = new TreeMap<String, Integer>(bvc);
+			
+			GremlinPipeline<Iterable<Vertex>, Vertex> pipeline = new GremlinPipeline<Iterable<Vertex>, Vertex>();
+			
+			pipeline.start(graph.getVertices(NerdleGraphTransformer.PROPERTY_CLAUSE_TYPE, NerdleGraphTransformer.VALUE_CLAUSE_TYPE_SUBJECT));
+			
+			for (Vertex vertex : pipeline) {
+				System.out.println(".");
+				String text = vertex.getProperty(NerdleGraphTransformer.PROPERTY_TEXT);
+				
+				if (!map.containsKey(text)) {
+					map.put(text, 1);
+				} else {
+					map.put(text, map.get(text)+1);
+				}
+			
+			}
+			
+			sortedMap.putAll(map);
+			
+			System.out.println("sort");
+			
+			int index = 0;
+			
+			for (Entry<String, Integer> entry : sortedMap.entrySet()) {
+				if (index > 30)
+					break;
+				
+				System.out.println(entry.getKey() + ": " + entry.getValue());
+				
+				index++;
+			}
+			
+		} catch (ConfigurationException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static class CountComparator implements Comparator<String> {
+
+		Map<String, Integer> base;
+
+		public CountComparator(Map<String, Integer> base) {
+			this.base = base;
+		}
+
+		// Note: this comparator imposes orderings that are inconsistent with
+		// equals.
+		public int compare(String a, String b) {
+			if (base.get(a) >= base.get(b)) {
+				return -1;
+			} else {
+				return 1;
+			} // returning 0 would merge keys
+		}
+	}
+
+}

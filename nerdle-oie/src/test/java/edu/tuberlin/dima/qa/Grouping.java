@@ -1,14 +1,28 @@
+/**
+ * Copyright 2014
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package edu.tuberlin.dima.qa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import org.apache.commons.configuration.ConfigurationException;
-import org.json.JSONException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,11 +35,11 @@ import edu.tuberlin.dima.nerdle.model.NerdleFact;
 import edu.tuberlin.dima.nerdle.model.NerdlePredicate;
 import edu.tuberlin.dima.nerdle.model.NerdleSubject;
 import edu.tuberlin.dima.nerdle.qa.GroupScoreComparator;
+import edu.tuberlin.dima.nerdle.qa.Grouper;
 import edu.tuberlin.dima.nerdle.qa.QuestionAnswer;
 import edu.tuberlin.dima.nerdle.qa.QuestionAnswerResponse;
 import edu.tuberlin.dima.nerdle.qa.ScoreCalculator;
 import edu.tuberlin.dima.nerdle.qa.ScoreComparator;
-import edu.tuberlin.dima.nerdle.qa.Grouper;
 
 public class Grouping {
 	

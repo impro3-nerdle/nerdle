@@ -1,5 +1,3 @@
-package edu.tuberlin.dima.nerdle.stringmetric;
-
 /**
  * N-Gram version of edit distance based on paper by Grzegorz Kondrak,
  * "N-gram similarity and distance". Proceedings of the Twelfth International
@@ -14,6 +12,10 @@ package edu.tuberlin.dima.nerdle.stringmetric;
  * strings with no matching characters will return a distance of 0.
  * 
  */
+
+package edu.tuberlin.dima.nerdle.stringmetric;
+
+
 public class NGramKondrakDistance implements StringDistance {
 
 	private int n;

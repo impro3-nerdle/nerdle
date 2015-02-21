@@ -135,6 +135,7 @@ public class QuestionAnswerTest {
 
 		// TreeMap<String, Double> jsonObject = answerQuestion.answerToWho(
 		// "Who was born in Ulm on 4th May.", graph);
+		
 
 		QuestionAnswerResponse questionAnswerResponse = answerQuestion
 				.answerToWho("Who was born in Ulm.", graph);

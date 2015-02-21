@@ -1,4 +1,4 @@
-REGISTER target/nerdle-pig-0.0.1-SNAPSHOT-job.jar;
+--REGISTER target/nerdle-pig-0.0.1-SNAPSHOT-job.jar;
 
 SET mapred.child.java.opts '-Xmx4G -XX:+UseConcMarkSweepGC';
 SET pig.tmpfilecompression 'true'

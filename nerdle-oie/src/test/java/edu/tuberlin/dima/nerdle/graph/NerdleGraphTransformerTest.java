@@ -1,6 +1,7 @@
 package edu.tuberlin.dima.nerdle.graph;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -22,7 +23,7 @@ public class NerdleGraphTransformerTest {
 	TinkerGraph graph;
 	NerdleFact fact;
 	NerdleFact transFact;
-	
+
 	@Before
 	public void prepareTransformer() throws Exception {
 		List<String> synonyms = new ArrayList<String>();
@@ -32,27 +33,33 @@ public class NerdleGraphTransformerTest {
 		List<NerdleArg> args = new ArrayList<NerdleArg>();
 		args.add(new NerdleArg("on 24th May", "T"));
 		args.add(new NerdleArg("in Ulm", "L"));
-		fact = new NerdleFact(
-				"Einstein was born on 24th May in Ulm",
+		fact = new NerdleFact("Einstein was born on 24th May in Ulm",
 				"http://www.einstein.de/info", new NerdlePredicate("was born",
 						"bear", synonyms), new NerdleSubject("Einstein"), args,
 				1.0D);
 
 		graph = new TinkerGraph();
-		graph.createIndex("verb-idx", Vertex.class);
-		
+
 		NerdleGraphTransformer.transform(fact, graph);
-		
-		Index<Vertex> index = graph.getIndex("verb-idx", Vertex.class);
-		Vertex vertex = index.get("verbIndex", "bear").iterator().next();
-		transFact = NerdleGraphTransformer.transform(vertex);
+
+		Iterator<Vertex> iterator = graph.getVertices().iterator();
+
+		while (iterator.hasNext()) {
+			Vertex vertex = (Vertex) iterator.next();
+
+			if (vertex.getProperty(NerdleGraphTransformer.PROPERTY_CLAUSE_TYPE) == NerdleGraphTransformer.VALUE_CLAUSE_TYPE_PREDICATE
+					&& (Boolean) vertex
+							.getProperty(NerdleGraphTransformer.PROPERTY_ISSYNONYM) == false) {
+				transFact = NerdleGraphTransformer.transform(vertex);
+			}
+		}
 
 		// JungGraphVisualizer visualizer = new JungGraphVisualizer();
 		// visualizer.visualize(graph);
 		// Thread.sleep(10000);
 
 	}
-	
+
 	@Test
 	public void testTransformer() throws Exception {
 		Assert.assertEquals(fact, transFact);

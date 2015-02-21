@@ -65,13 +65,4 @@ public class NerdleFactExtractorTest {
 		
 	}
 	
-	@Test
-	public void testReproduceError() {
-		NerdleFactExtractor nerdleFactExtractor = new NerdleFactExtractor();
-		
-		nerdleFactExtractor.process("", "source", true, true, true);
-		
-		nerdleFactExtractor.process(null, "source", true, true, true);
-
-	}
 }

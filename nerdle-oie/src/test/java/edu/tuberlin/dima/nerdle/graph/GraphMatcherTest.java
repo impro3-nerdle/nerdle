@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tinkerpop.blueprints.Vertex;
@@ -77,6 +78,7 @@ public class GraphMatcherTest {
 	}
 
 	@Test
+	@Ignore
 	public void testMatchedVertexes() {
 
 		NerdleFact questionExtraction = new NerdleFact(
@@ -102,6 +104,7 @@ public class GraphMatcherTest {
 	}
 
 	@Test
+	@Ignore
 	public void testFuzzyVerb() {
 		NerdleFact questionExtraction = new NerdleFact(
 				"Peter born in Ulm on 4th May.", "", 0.63D);
@@ -127,6 +130,7 @@ public class GraphMatcherTest {
 	}
 
 	@Test
+	@Ignore
 	public void testPartialVerb() {
 
 		NerdleFact questionExtraction = new NerdleFact(
@@ -151,6 +155,7 @@ public class GraphMatcherTest {
 	}
 
 	@Test
+	@Ignore
 	public void testFuzzyArgument() {
 
 		NerdleFact questionExtraction = new NerdleFact(
@@ -176,6 +181,7 @@ public class GraphMatcherTest {
 	}
 
 	@Test
+	@Ignore
 	public void testPartialArgument() {
 
 		NerdleFact questionExtraction = new NerdleFact(

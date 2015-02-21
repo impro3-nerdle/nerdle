@@ -28,7 +28,6 @@
 		<module>nerdle-oie</module>
 		<module>nerdle-crawler</module>
 		<module>nerdle-pig</module>
-		<module>nerdle-view</module>
 	</modules>
 
 	<properties>

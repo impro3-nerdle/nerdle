@@ -1,3 +1,19 @@
+/**
+ * Copyright 2014
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package edu.tuberlin.dima.nerdle.util;
 
 import java.io.File;
@@ -28,13 +44,8 @@ public class ResourceManager {
 		String fileName = path[path.length - 1];
 
 		File r = new File(extractedResourceDir + File.separator + fileName);
-//		System.out.println("ResourceManager: path: " + r.getAbsolutePath());
 
-		// TODO: beim Entpacken Pfad von resource mit einbeziehen, dass es auch
-		// moeglich ist Dateien mit dem selben Namen zu haben?
-		
 		try {
-			
 			// copy data
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			InputStream is = loader.getResourceAsStream(fileName);
@@ -48,7 +59,6 @@ public class ResourceManager {
 			fos.close();
 			
 		} catch (IOException e) {
-			// TODO: handle exception
 		}
 		
 		return r.getAbsolutePath();

@@ -20,7 +20,7 @@ public class LevenshteinDistance implements StringDistance {
 
 	@Override
 	public double getDistance(String s1, String s2) {
-		// TODO Auto-generated method stub
+		//TODO
 		return 0;
 	}
 

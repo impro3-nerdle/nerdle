@@ -62,8 +62,6 @@ public class QuestionAnswer {
 	public QuestionAnswerResponse answerToWho(String question, TinkerGraph graph)
 			throws ConfigurationException {
 
-		// String cleanedSentence = question.toLowerCase().replace("who",
-		// "Peter");
 		String cleanedSentence = question.replaceAll("^(Who|who)", "Peter");
 
 		List<NerdleFact> extractions = OpenIEHelper.INSTANCE
@@ -75,20 +73,16 @@ public class QuestionAnswer {
 		for (NerdleFact nerdleFact : extractions) {
 			List<Vertex> vertices = GraphMatcher.getVertexesForSubject(
 					nerdleFact, graph);
-			// System.out.println("V:" + vertices);
 			for (Vertex vertex : vertices) {
 
 				NerdleFact transform = NerdleGraphTransformer.transform(vertex);
 
-				// System.out.println("t:"+transform);
 
 				double score = ScoreCalculator.calculateForSubject(nerdleFact,
 						transform);
 
 				if (score > TRESHOLD_WH0) {
 					answerToScore.put(transform, score);
-
-					// System.out.println(answerToScore.size());
 					answerToQuestion.put(transform, nerdleFact);
 				}
 
@@ -115,7 +109,6 @@ public class QuestionAnswer {
 				.extractFactsFromArticleText(cleanedQuestion, "", true);
 
 		NerdleFact bestExtraction = getMaxConfidenceExtraction(extractions);
-		// System.out.println("bestExtraction:" + bestExtraction);
 		
 		System.out.println("bestExtraction: ");
 		System.out.println(bestExtraction);
@@ -145,9 +138,6 @@ public class QuestionAnswer {
 			System.out.println(secondWhoExtraction);
 			System.out.println();
 			
-			// System.out.println(firstWhoExtraction);
-			// System.out.println(secondWhoExtraction);
-
 			List<Vertex> firstVertices = GraphMatcher.getVertexesForSubject(
 					firstWhoExtraction, graph);
 			List<Vertex> thirdVertices = GraphMatcher.getVertexesForSubject(

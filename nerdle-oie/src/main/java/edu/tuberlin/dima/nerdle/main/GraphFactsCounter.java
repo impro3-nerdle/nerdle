@@ -46,7 +46,6 @@ public class GraphFactsCounter {
 			GremlinPipeline<Iterable<Vertex>, Vertex> pipeline = new GremlinPipeline<Iterable<Vertex>, Vertex>();
 
 			pipeline.start(index.get("verbIndex", null)).hasNot(NerdleGraphTransformer.PROPERTY_ISSYNONYM, true);
-//			System.out.println(pipeline.toList().size());
 		} catch (ConfigurationException e) {
 			e.printStackTrace();
 		}

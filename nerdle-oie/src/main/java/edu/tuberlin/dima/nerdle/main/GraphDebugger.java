@@ -59,7 +59,6 @@ public class GraphDebugger {
 			}
 
 		} catch (ConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

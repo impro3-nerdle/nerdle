@@ -32,24 +32,11 @@ public class QuestionAnswerDebugger {
 		TinkerGraph graph = SingletonGraph.getInstance().getGraphs()
 				.get("simpsons");
 
-		// Index<Vertex> index = graph.getIndex("verb-idx", Vertex.class);
-		// Iterator<Vertex> it = index.get("verbIndex", "sleeps").iterator();
-		// while (it.hasNext()) {
-		// Vertex vertex = (Vertex) it.next();
-		// System.out.println(NerdleGraphTransformer.transform(vertex));
-		// }
-
-		// while (it.hasNext()) {
-		// Vertex v = (Vertex) it.next();
-		// System.out.println("found");
-		// }
-
 		QuestionAnswer answerQuestion = new QuestionAnswer();
 
 		QuestionAnswerResponse questionAnswerResponse = answerQuestion
 				.answerToWhen("Which 118 years old runs for Governor?", graph);
 
-		// System.out.println(questionAnswerResponse.getAnswerToScore());
 
 		for (NerdleFact fact : questionAnswerResponse.getAnswerToScore()
 				.keySet()) {

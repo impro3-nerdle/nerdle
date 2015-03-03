@@ -45,7 +45,6 @@ public class SingletonGraph {
 		try {
 			propertiesConfiguration = new PropertiesConfiguration(ResourceManager.getResourcePath(File.separator+"graphs.properties"));
 		} catch (ConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String[] graphStrings = propertiesConfiguration.getStringArray("graphs");
@@ -65,8 +64,6 @@ public class SingletonGraph {
 		if (SingletonGraph.instance == null) {
 			
 			SingletonGraph.instance = new SingletonGraph();
-			
-//			Resources.getResource("graphs.properties");
 			
 		}
 		return SingletonGraph.instance;

@@ -20,7 +20,7 @@ public class NerdleArg {
 	
 	private String text;
 	
-	/* Named Entity Relation (NER): 
+	/** Named Entity Relation (NER): 
 	 * 'L': Location, 
 	 * 'T': Time   
 	 */

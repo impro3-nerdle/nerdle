@@ -46,7 +46,6 @@ public class NerdleGraphTransformer {
 	public final static String VALUE_CLAUSE_TYPE_SUBJECT = "S";
 
 	public static void transform(NerdleFact fact, TinkerGraph graph) {
-//		System.out.println(fact.getSentence());
 		Vertex predicate = createPredicateVertex(fact.getPredicate(),
 				fact.getSentence(), fact.getSource(), fact.getConfidence(),
 				graph);

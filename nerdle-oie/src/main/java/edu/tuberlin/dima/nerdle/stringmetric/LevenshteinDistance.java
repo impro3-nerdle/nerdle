@@ -16,12 +16,32 @@
 
 package edu.tuberlin.dima.nerdle.stringmetric;
 
+import scala.Option;
+
+import com.rockymadden.stringmetric.similarity.LevenshteinMetric;
+
+/**
+ * Extends StringDistance 
+ * @author jasir
+ *
+ */
 public class LevenshteinDistance implements StringDistance {
 
+	/**
+	 * Compares two values with the Levenshtein distance metric
+	 */
 	@Override
-	public double getDistance(String s1, String s2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getDistance(String a, String b) {
+		Option<Object> value = LevenshteinMetric.apply().compare(a, b, null);
+		String valueString = value.toString().replace("Some(", "")
+				.replace(")", "");
+		if (!valueString.equals("None")) {
+			double comparedValue = Double.parseDouble(valueString);
+			return comparedValue;
+		}else{
+			return 0.0D;
+		}
+		
 	}
 
 }

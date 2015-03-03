@@ -23,6 +23,12 @@ import edu.tuberlin.dima.nerdle.model.NerdleArg;
 import edu.tuberlin.dima.nerdle.model.NerdleFact;
 import edu.tuberlin.dima.nerdle.stringmetric.FuzzyStringMatcher;
 
+/**
+ * This class is responsible to calculate the score of the purity formula for each object: 
+ * subject, argument and predicate
+ * @author jasir
+ *
+ */
 public class ScoreCalculator {
 
 	/* EXTRACTIONS */

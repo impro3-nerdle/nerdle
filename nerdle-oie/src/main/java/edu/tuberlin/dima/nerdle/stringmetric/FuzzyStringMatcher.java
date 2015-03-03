@@ -18,10 +18,6 @@ package edu.tuberlin.dima.nerdle.stringmetric;
 
 import java.util.List;
 
-import scala.Option;
-
-import com.rockymadden.stringmetric.similarity.LevenshteinMetric;
-
 import edu.tuberlin.dima.nerdle.model.NerdleArg;
 
 public class FuzzyStringMatcher {
@@ -41,15 +37,8 @@ public class FuzzyStringMatcher {
 	}
 
 	public static double fuzzyStringScore(String a, String b) {
-		Option<Object> value = LevenshteinMetric.apply().compare(a, b, null);
-		String valueString = value.toString().replace("Some(", "")
-				.replace(")", "");
-		if (!valueString.equals("None")) {
-			double comparedValue = Double.parseDouble(valueString);
-			return getScore(a, b, comparedValue);
-		} else {
-			return 0.0D;
-		}
+		LevenshteinDistance lDistance = new LevenshteinDistance();
+		return getScore(a, b, lDistance.getDistance(a, b));
 	}
 
 	public static double fuzzyStringScoreNGramm(String a, String b) {

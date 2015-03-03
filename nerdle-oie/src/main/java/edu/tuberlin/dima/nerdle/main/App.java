@@ -70,13 +70,10 @@ public class App {
 		TinkerGraph graph = new TinkerGraph(graphDir.getPath(),
 				TinkerGraph.FileType.GRAPHSON);
 
-		// graph.createIndex("verb-idx", Vertex.class);
-
 		Gson gson = new Gson();
 
 		BufferedReader reader;
 		for (File file : files) {
-			// System.out.println(file.getName());
 			reader = new BufferedReader(new FileReader(file));
 			String line;
 			while ((line = reader.readLine()) != null) {
